@@ -1,21 +1,31 @@
 const boxContainer = document.querySelector('.container');
 const pixelColor = document.querySelector('#rgb');
 const boxSize = document.querySelector('#gridsize');
-createGrid(16);
-let pixelBox = document.querySelectorAll('.block');
+createGrid(boxSize.value);
+let mouseDown=false;
+
+
+function draw() {
+    pixelBox = document.querySelectorAll('.block');
+    pixelBox.forEach((pixelBox) => {
+        pixelBox.addEventListener('mouseenter',()=>{
+            pixelBox.style.backgroundColor = pixelColor.value;
+            console.log('Enter'+pixelColor.value);
+        })
+        
+    });
+    
+    
+    
+ };
+
+
+
 
 
 boxSize.addEventListener('change', () => {
     boxContainer.innerHTML='';
     createGrid(boxSize.value);
-});
-
-
-pixelBox.forEach((pixelBox) => {
-    pixelBox.addEventListener('click', () => {
-        console.log(pixelColor.value);
-        pixelBox.style.backgroundColor = pixelColor.value;
-    });
 });
 
 function createGrid(number){
@@ -30,6 +40,14 @@ function createGrid(number){
             box = document.createElement('div');
             box.className = `block ${i}x${j}`;
             boxContainer.appendChild(box);
+               
         }
     }
+    box = document.querySelectorAll('.block');
+    box.forEach((box) => {
+        box.addEventListener('mouseenter',function(){
+            box.style.backgroundColor = pixelColor.value;
+        })
+    })
+    
 };
